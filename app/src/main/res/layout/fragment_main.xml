@@ -44,4 +44,12 @@
         tools:layout_editor_absoluteX="294dp"
         tools:layout_editor_absoluteY="587dp" />
 
+    <TextView
+        android:id="@+id/timerTextView"
+        android:layout_width="103dp"
+        android:layout_height="78dp"
+        android:text=""
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="189dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

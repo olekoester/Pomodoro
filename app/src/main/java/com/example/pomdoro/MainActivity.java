@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     TextView timerTextView;
     long startTime = 0;
 
+    Button button_start, button_stop;
+
     // runs without a timer by reposting this handler at the end of the runnable
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -48,14 +50,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        timerTextView = (TextView) findViewById(R.id.timerTextView);
+        button_start = findViewById(R.id.button_start);
+        button_stop = findViewById(R.id.button_stop);
+        timerTextView = findViewById(R.id.timerTextView);
 
 
         // findViewById button from fragment.xml
-        Button b = (Button) findViewById(R.id.button_start);
+        //  Button b = (Button) findViewById(R.id.button_start);
 
-        b.setText("start");
-        b.setOnClickListener(new View.OnClickListener() {
+        button_start.setText("start");
+        button_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Button b = (Button) v;

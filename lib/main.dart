@@ -1,10 +1,7 @@
-import 'dart:async';
 import 'dart:html';
 
 import 'package:flutter/material.dart';
 
-var duration = Duration(seconds: 3); //Duration, die einen Zeitraum von 3 Sekunden definiert
-var timer = Timer(duration, function);
 void main() {
   runApp(const MyApp());
 }
@@ -31,53 +28,11 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyStatefulWidget(), MyHomePage(title: 'Flutter Timer Demo Home Page'),
+      home: const MyStatefulWidget(),
     );
   }
 }
 
-class MyHomePage  extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    },
-    );
-  }
-}
-
-@override
-void initState() {
-  super.initState();
-  Timer(Duration(seconds: 3), _incrementCounter);
-}
-
-@override
-Widget build(BuildContext context){
-  return Scaffold(
-    appBar: AppBar(
-      title: Text(widget.title),
-    ),
-    body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            'Der Zaehler wird nach 3 Sekunden hochzaehlen',
-          ),
-          Text('$_counter',
-            style: Theme.of(context).textTheme.headline4,),
-        ],
-      ),)
-  )
-}
 
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({super.key});

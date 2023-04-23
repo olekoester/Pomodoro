@@ -1,5 +1,4 @@
-import 'dart:html';
-
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -33,7 +32,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({super.key});
 
@@ -45,16 +43,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Settings',
-      style: optionStyle,
-    )
-  ];
+  static const List<Widget> _widgetOptions = <Widget>[    Text(      'Index 0: Home',      style: optionStyle,    ),    Text(      'Index 1: Settings',      style: optionStyle,    )  ];
+
+  late Timer _timer;
+  int _seconds = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+      setState(() {
+        _seconds++;
+      });
+    });
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -84,7 +86,31 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     selectedItemColor: Colors.lightBlue,
     onTap: _onItemTapped,
     ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: () {
+        setState(() {
+          _seconds = 0;
+        });
+      },
+      tooltip: 'Reset Timer',
+      child: const Icon(Icons.refresh),
+    ),
+    floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    persistentFooterButtons: <Widget>[
+      Text(
+        '$_seconds seconds',
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ],
     );
   }
-}
 
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+}
